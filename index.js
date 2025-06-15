@@ -97,6 +97,28 @@ const Product = mongoose.model("Product", {
 });
 
 
+const updateImageUrls = async () => {
+    try {
+        const products = await Product.find({
+            image: { $regex: /^http:\/\/localhost:4000\/images\// }
+        });
+
+        const updated = await Promise.all(
+            products.map(async (product) => {
+                const newImageUrl = product.image.replace(
+                    'http://localhost:4000',
+                    'https://healthy-snacks-website-backend.onrender.com'
+                );
+                product.image = newImageUrl;
+                return await product.save();
+            })
+        );
+
+        console.log(`✅ Updated ${updated.length} product image URLs`);
+    } catch (error) {
+        console.error('❌ Failed to update image URLs:', error);
+    }
+};
 
 
 
@@ -671,4 +693,6 @@ app.listen(port, (error) => {
     } else {
         console.log("error:" + error);
     }
+        updateImageUrls(); // ✅ One-time DB image update
+
 });
