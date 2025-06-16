@@ -34,8 +34,19 @@ MONGODB_URL=mongodb+srv://<username>:<password>@cluster.mongodb.net/snacks
 > Ensure your MongoDB Atlas instance is running and accessible.
 
 ## 📁 Directory Structure
-- `index.js` – Entry point, API's, Mongoose schema models
-- `/upload/images` – Static folder for product images
+
+backend/
+│
+├── node_modules/            # Backend project dependencies
+├── upload/                  # Directory for storing uploaded files
+│
+├── .env                     # Environment variables (e.g., database URL, API keys)
+├── .gitignore               # Files/folders to be ignored by Git
+├── index.js                 # Entry point for the backend server (e.g., Express app)
+├── package.json             # Backend dependencies and scripts
+├── package-lock.json        # Lock file for dependencies
+└── Readme.md                # Backend documentation
+
 
 ## 🧪 Running Locally
 
